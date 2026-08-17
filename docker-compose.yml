@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  # The Database Service
+  mongodb:
+    image: mongo:6.0
+    container_name: nest_mongodb
+    ports:
+      - "27017:27017" # Exposes DB to your host machine
+    volumes:
+      - mongo_data:/data/db # Persists data on your machine
+    networks:
+      - app-network
+
+  # Your NestJS Application
+  api:
+    build: .
+    container_name: nest_api
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+    environment:
+      # Use 'mongodb' (the service name) as the hostname
+      - MONGO_URI=mongodb://mongodb:27017/nest-auth-db
+    networks:
+      - app-network
+
+volumes:
+  mongo_data:
+
+networks:
+  app-network:
+    driver: bridge
