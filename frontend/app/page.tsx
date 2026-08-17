@@ -5,8 +5,8 @@ import { useState } from 'react';
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? 'http://localhost:3000';
 
 export default function Home() {
-  const [email, setEmail] = useState('mawaisrafiquesukhera@gmail.com');
-  const [password, setPassword] = useState('@@Awais786$$');
+  const [email, setEmail] = useState('johndoe@example.com');
+  const [password, setPassword] = useState('TestPass123');
   const [status, setStatus] = useState<string>('');
   const [user, setUser] = useState<any>(null);
   const [accessToken, setAccessToken] = useState('');
